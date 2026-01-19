@@ -1,4 +1,5 @@
-﻿using hr.Application.Employee;
+﻿using hr.Application.Dto;
+using hr.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace hr.Controllers.Employee;
@@ -7,18 +8,32 @@ namespace hr.Controllers.Employee;
 [Route("[controller]")]
 public class EmployeeController : ControllerBase
 {   
-    private readonly IEmployeeRepository _repository;
+    private readonly IEmployeeService _service;
 
-    public EmployeeController(IEmployeeRepository repository)
+    public EmployeeController(IEmployeeService service)
     {
-        _repository = repository;
+        _service = service;
     }
     [HttpGet]
     public async Task<ActionResult> GetEmployees()
     {
-        var list = await _repository.GetAll();
+        var list = await _service.GetEmployees();
         return Ok(list);
     }
-    
+
+
+    [HttpPost]
+    public async Task<ActionResult<CreateEmployeeDto>> CreateEmployee(CreateEmployeeDto createEmployeeDto)
+    {
+        var  result = await _service.CreateEmployee(createEmployeeDto);
+        return Ok(result);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteEmployee(int id)
+    {
+        await _service.DeleteEmployee(id);
+        return NoContent();
+    }
     
 }
