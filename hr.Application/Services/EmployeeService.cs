@@ -21,15 +21,16 @@ public class EmployeeService : IEmployeeService
         return _repository.GetAll();
     }
 
-    public async Task<ResponseEmployeeDto> CreateEmployee(CreateEmployeeDto createEmployeeDto)
+    public async Task<EmployeeResponseDto> CreateEmployee(CreateEmployeeDto createEmployeeDto)
     {
         var employee = _mapper.Map<Employee>(createEmployeeDto);
         await _repository.Create(employee);
-        return _mapper.Map<ResponseEmployeeDto>(employee);
+        return _mapper.Map<EmployeeResponseDto>(employee);
     }
 
     public async Task DeleteEmployee(int id)
     {
         await _repository.DeleteEmployee(id);
     }
+    
 }

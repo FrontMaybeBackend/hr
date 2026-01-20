@@ -1,5 +1,5 @@
 ﻿using hr.Domain.Interfaces;
-using hr.Infrastructure.Contexts;
+using hr.Infrastructure.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -7,9 +7,9 @@ namespace hr.Infrastructure.Employee;
 
 public class EmployeeRepository : IEmployeeRepository
 {
-    private readonly EmployeeDbContext _dbContext;
+    private readonly ApplicationDbContext _dbContext;
 
-    public EmployeeRepository(EmployeeDbContext dbContext)
+    public EmployeeRepository(ApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }

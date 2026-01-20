@@ -1,6 +1,6 @@
 ﻿namespace hr.Application.Dto;
 
-public class ResponseEmployeeDto
+public class EmployeeResponseDto
 {
     public int EmployeeId { get; set; }
     public string FirstName { get; set; }
