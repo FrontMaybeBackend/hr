@@ -7,7 +7,8 @@ public interface IEmployeeService
 {
     public Task<List<Employee>> GetEmployees();
 
-    public Task<ResponseEmployeeDto> CreateEmployee(CreateEmployeeDto createEmployeeDto);
+    public Task<EmployeeResponseDto> CreateEmployee(CreateEmployeeDto createEmployeeDto);
     
     public Task DeleteEmployee(int id);
+    
 }
