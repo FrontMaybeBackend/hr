@@ -1,4 +1,4 @@
-﻿namespace hr.Application.Dto;
+﻿namespace Application.Dto;
 
 public class CreateEmployeeDto
 {

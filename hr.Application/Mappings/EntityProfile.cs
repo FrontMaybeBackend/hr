@@ -1,8 +1,8 @@
-﻿using AutoMapper;
-using hr.Application.Dto;
+﻿using Application.Dto;
+using AutoMapper;
 using hr.Domain.Entity;
 
-namespace hr.Application.Mappings;
+namespace Application.Mappings;
 
 public class EntityProfile : Profile
 {

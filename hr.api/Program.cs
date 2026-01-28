@@ -1,9 +1,8 @@
-using AutoMapper;
+using Application.Interfaces;
+using Application.Mappings;
+using Application.Services;
+using Application.Validators;
 using FluentValidation;
-using hr.Application.Interfaces;
-using hr.Application.Mappings;
-using hr.Application.Services;
-using hr.Application.Validators;
 using hr.Domain.Interfaces;
 using hr.Infrastructure.Data.Contexts;
 using hr.Infrastructure.Employee;
@@ -45,6 +44,7 @@ builder.Services.AddValidatorsFromAssemblyContaining<CreateUserDtoValidator>();
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
+
 
 
 var app = builder.Build();

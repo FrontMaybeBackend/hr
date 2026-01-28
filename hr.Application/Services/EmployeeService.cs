@@ -1,9 +1,10 @@
-﻿using hr.Application.Dto;
-using hr.Application.Interfaces;
+﻿using Application.Dto;
+using Application.Exceptions;
+using Application.Interfaces;
 using hr.Domain.Entity;
 using hr.Domain.Interfaces;
 
-namespace hr.Application.Services;
+namespace Application.Services;
 
 public class EmployeeService : IEmployeeService
 {
@@ -30,7 +31,12 @@ public class EmployeeService : IEmployeeService
 
     public async Task DeleteEmployee(int id)
     {
-        await _repository.DeleteEmployee(id);
+       var employee = await  _repository.FindEmployeeAsync(id);
+       if (employee is null)
+       {
+           throw new NotFoundException($"Employee with id {id} not found");
+       }
+       await _repository.DeleteEmployee(id);
     }
     
 }

@@ -1,7 +1,6 @@
-﻿using hr.Application.Dto;
-using hr.Domain.Entity;
+﻿using Application.Dto;
 
-namespace hr.Application.Interfaces;
+namespace Application.Interfaces;
 
 public interface IUserService
 {

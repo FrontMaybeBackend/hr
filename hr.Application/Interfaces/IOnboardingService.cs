@@ -1,6 +1,6 @@
-﻿using hr.Application.Dto;
+﻿using Application.Dto;
 
-namespace hr.Application.Interfaces;
+namespace Application.Interfaces;
 
 public interface IOnboardingService
 {
