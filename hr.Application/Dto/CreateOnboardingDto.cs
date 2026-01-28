@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace hr.Application.Dto;
+﻿namespace Application.Dto;
 
 public class CreateOnboardingDto
 {

@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Application.Exceptions;
+using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
 
 namespace hr.Middleware;
@@ -27,7 +28,20 @@ public class GlobalExceptionHandler : IExceptionHandler
                 Title = "Validation error",
                 Detail = "One or more validation errors occurred.",
             };
+            
+            await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
+            return true;
+        }
 
+        if (exception is NotFoundException notFoundException)
+        {
+            var problemDetails = new HttpValidationProblemDetails()
+            {
+                Status = StatusCodes.Status404NotFound,
+                Title = "Resource not found",
+                Detail = notFoundException.Message,
+            };
+            
             await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
             return true;
         }

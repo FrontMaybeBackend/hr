@@ -25,6 +25,11 @@ public class EmployeeRepository : IEmployeeRepository
         return employee;
     }
 
+    public async Task<Domain.Entity.Employee?> FindEmployeeAsync(int id)
+    {
+        return await _dbContext.Employees.FirstOrDefaultAsync(e => e.EmployeeId == id);
+    }
+
     public async Task DeleteEmployee(int id)
     {
         var employee = _dbContext.Employees.Find(id);

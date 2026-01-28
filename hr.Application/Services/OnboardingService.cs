@@ -1,9 +1,8 @@
-﻿using AutoMapper;
-using hr.Application.Dto;
-using hr.Application.Interfaces;
+﻿using Application.Dto;
+using Application.Interfaces;
+using AutoMapper;
 
-
-namespace hr.Application.Services;
+namespace Application.Services;
 
 public class OnboardingService : IOnboardingService
 {

@@ -1,7 +1,7 @@
-﻿using hr.Application.Dto;
+﻿using Application.Dto;
 using hr.Domain.Entity;
 
-namespace hr.Application.Interfaces;
+namespace Application.Interfaces;
 
 public interface IEmployeeService
 {

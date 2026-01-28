@@ -1,7 +1,6 @@
-﻿using hr.Domain.Entity;
-using hr.Domain.Enums;
+﻿using hr.Domain.Enums;
 
-namespace hr.Application.Dto;
+namespace Application.Dto;
 
 public class UserResponseDto
 {

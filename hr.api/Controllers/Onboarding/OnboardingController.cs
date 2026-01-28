@@ -1,5 +1,5 @@
-﻿using hr.Application.Dto;
-using hr.Application.Interfaces;
+﻿using Application.Dto;
+using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 namespace hr.Controllers.Onboarding;
 

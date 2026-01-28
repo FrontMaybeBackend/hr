@@ -1,11 +1,11 @@
-﻿using AutoMapper;
+﻿using Application.Dto;
+using Application.Interfaces;
+using AutoMapper;
 using FluentValidation;
-using hr.Application.Dto;
-using hr.Application.Interfaces;
 using hr.Domain.Entity;
 using hr.Domain.Interfaces;
 
-namespace hr.Application.Services;
+namespace Application.Services;
 
 public class UserService : IUserService
 {
