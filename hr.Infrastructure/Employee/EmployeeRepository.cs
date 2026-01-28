@@ -5,35 +5,29 @@ using Microsoft.EntityFrameworkCore;
 
 namespace hr.Infrastructure.Employee;
 
-public class EmployeeRepository : IEmployeeRepository
+public class EmployeeRepository(ApplicationDbContext dbContext) : IEmployeeRepository
 {
-    private readonly ApplicationDbContext _dbContext;
-
-    public EmployeeRepository(ApplicationDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
     public async Task<List<Domain.Entity.Employee>> GetAll()
     {
-        return await _dbContext.Employees.ToListAsync<Domain.Entity.Employee>();
+        return await dbContext.Employees.ToListAsync<Domain.Entity.Employee>();
     }
 
     public async Task<Domain.Entity.Employee> Create(Domain.Entity.Employee employee)
     {
-        await _dbContext.Employees.AddAsync(employee);
-        await _dbContext.SaveChangesAsync();
+        await dbContext.Employees.AddAsync(employee);
+        await dbContext.SaveChangesAsync();
         return employee;
     }
 
     public async Task<Domain.Entity.Employee?> FindEmployeeAsync(int id)
     {
-        return await _dbContext.Employees.FirstOrDefaultAsync(e => e.EmployeeId == id);
+        return await dbContext.Employees.FirstOrDefaultAsync(e => e.EmployeeId == id);
     }
 
     public async Task DeleteEmployee(int id)
     {
-        var employee = _dbContext.Employees.Find(id);
-        _dbContext.Employees.Remove(employee);
-        await _dbContext.SaveChangesAsync();
+        var employee = dbContext.Employees.Find(id);
+        dbContext.Employees.Remove(employee);
+        await dbContext.SaveChangesAsync();
     }
 }
