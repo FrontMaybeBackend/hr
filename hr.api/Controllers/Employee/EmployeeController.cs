@@ -6,18 +6,12 @@ namespace hr.Controllers.Employee;
 
 [ApiController]
 [Route("[controller]")]
-public class EmployeeController : ControllerBase
-{   
-    private readonly IEmployeeService _service;
-
-    public EmployeeController(IEmployeeService service)
-    {
-        _service = service;
-    }
+public class EmployeeController(IEmployeeService service) : ControllerBase
+{
     [HttpGet]
     public async Task<ActionResult> GetEmployees()
     {
-        var list = await _service.GetEmployees();
+        var list = await service.GetEmployees();
         return Ok(list);
     }
 
@@ -25,14 +19,14 @@ public class EmployeeController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<CreateEmployeeDto>> CreateEmployee(CreateEmployeeDto createEmployeeDto)
     {
-        var  result = await _service.CreateEmployee(createEmployeeDto);
+        var  result = await service.CreateEmployee(createEmployeeDto);
         return Ok(result);
     }
 
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteEmployee(int id)
     {
-        await _service.DeleteEmployee(id);
+        await service.DeleteEmployee(id);
         return NoContent();
     }
     
