@@ -13,6 +13,8 @@ public class EntityProfile : Profile
         CreateMap<CreateUserDto, User>();
         CreateMap<User, UserResponseDto>();
         CreateMap<User, OnboardingResponseDto>();
+        CreateMap<LoginUserDto, User>();
+        CreateMap<User, LoginUserResponseDto>();
     }
     
 }

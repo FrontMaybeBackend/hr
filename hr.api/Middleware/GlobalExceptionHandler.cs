@@ -45,6 +45,19 @@ public class GlobalExceptionHandler : IExceptionHandler
             await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
             return true;
         }
+        
+        if (exception is ExistsException existsException)
+        {
+            var problemDetails = new HttpValidationProblemDetails()
+            {
+                Status = StatusCodes.Status409Conflict,
+                Title = "User with this email already exists",
+                Detail = existsException.Message,
+            };
+            
+            await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
+            return true;
+        }
 
         return false;
     }
