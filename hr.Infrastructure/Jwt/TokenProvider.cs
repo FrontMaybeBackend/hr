@@ -9,14 +9,13 @@ using JwtRegisteredClaimNames = System.IdentityModel.Tokens.Jwt.JwtRegisteredCla
 
 namespace hr.Infrastructure.Jwt;
 
-public class TokenProvider (IConfiguration configuration) : ICreateJwtToken
+public class TokenProvider(IConfiguration configuration) : ICreateJwtToken
 {
-
     public string Create(Domain.Entity.User user)
     {
         string secretKey = configuration["Jwt:JwtToken"];
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
-        var credentials = new SigningCredentials(securityKey,SecurityAlgorithms.HmacSha256);
+        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
 
         var tokenDescriptor = new SecurityTokenDescriptor
@@ -26,13 +25,13 @@ public class TokenProvider (IConfiguration configuration) : ICreateJwtToken
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
             ]),
             Expires = DateTime.UtcNow.AddMinutes(30),
-            SigningCredentials = credentials
+            SigningCredentials = credentials,
+            Audience = configuration["Jwt:Audience"],
+            Issuer = configuration["Jwt:Issuer"]
         };
-        
+
         var handler = new JsonWebTokenHandler();
         string token = handler.CreateToken(tokenDescriptor);
         return token;
-
     }
-    
 }

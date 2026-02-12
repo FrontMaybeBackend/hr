@@ -1,5 +1,6 @@
 ﻿using Application.Dto;
 using Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace hr.Controllers.Employee;
@@ -9,6 +10,7 @@ namespace hr.Controllers.Employee;
 public class EmployeeController(IEmployeeService service) : ControllerBase
 {
     [HttpGet]
+    [Authorize]
     public async Task<ActionResult> GetEmployees()
     {
         var list = await service.GetEmployees();
